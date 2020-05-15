@@ -30,11 +30,12 @@ AI.MODELRUN | [ModelRun](https://godoc.org/github.com/RedisAI/redisai-go/redisai
 AI._MODELSCAN |  
 AI.SCRIPTSET | [ScriptSet](https://godoc.org/github.com/RedisAI/redisai-go/redisai#Client.ScriptSet)
 AI.SCRIPTGET | [ScriptGet](https://godoc.org/github.com/RedisAI/redisai-go/redisai#Client.ScriptGet)
-AI.SCRIPTDEL | [ScriptDel](https://godoc.org/github.com/RedisAI/redisai-go/redisai#Client.ScriptRun)
-AI.SCRIPTRUN | [ScriptRun](https://godoc.org/github.com/RedisAI/redisai-go/redisai#Client.ScriptDel)
+AI.SCRIPTDEL | [ScriptDel](https://godoc.org/github.com/RedisAI/redisai-go/redisai#Client.ScriptDel)
+AI.SCRIPTRUN | [ScriptRun](https://godoc.org/github.com/RedisAI/redisai-go/redisai#Client.ScriptRun)
 AI._SCRIPTSCAN |  
-AI.DAGRUN |  
-AI.INFO |  
+AI.DAGRUN | [DagRun](https://godoc.org/github.com/RedisAI/redisai-go/redisai#Client.DagRun)
+AI.DAGRUN_RO | [DagRunRO](https://godoc.org/github.com/RedisAI/redisai-go/redisai#Client.DagRunRO)
+AI.INFO |  [Info](https://godoc.org/github.com/RedisAI/redisai-go/redisai#Client.Info)
 AI.CONFIG * | [LoadBackend](https://godoc.org/github.com/RedisAI/redisai-go/redisai#Client.LoadBackend)
 
 
@@ -60,7 +61,7 @@ func main() {
 
 	// Set a tensor
 	// AI.TENSORSET foo FLOAT 2 2 VALUES 1.1 2.2 3.3 4.4
-	_ = client.TensorSet("foo", redisai.TypeFloat, []int{2, 2}, []float32{1.1, 2.2, 3.3, 4.4})
+	_ = client.TensorSet("foo", redisai.TypeFloat, []int64{2, 2}, []float32{1.1, 2.2, 3.3, 4.4})
 
 	// Get a tensor content as a slice of values
 	// dt DataType, shape []int, data interface{}, err error
@@ -97,12 +98,12 @@ func main() {
 
 	// Set a tensor
 	// AI.TENSORSET foo FLOAT 2 2 VALUES 1.1 2.2 3.3 4.4
-	err := client.TensorSet("foo1", redisai.TypeFloat, []int{2, 2}, []float32{1.1, 2.2, 3.3, 4.4})
+	err := client.TensorSet("foo1", redisai.TypeFloat, []int64{2, 2}, []float32{1.1, 2.2, 3.3, 4.4})
 	if err != nil {
 		log.Fatal(err)
 	}
 	// AI.TENSORSET foo2 FLOAT 1" 1 VALUES 1.1
-	err = client.TensorSet("foo2", redisai.TypeFloat, []int{1, 1}, []float32{1.1})
+	err = client.TensorSet("foo2", redisai.TypeFloat, []int64{1, 1}, []float32{1.1})
 	if err != nil {
 		log.Fatal(err)
 	}
